@@ -32,6 +32,22 @@ public class ResourceLoader {
     public static let uiImage: UIImage = UIImage(named: "sample", in: .module, compatibleWith: nil)!
     
     public static let image2: Image = Image("sample2", bundle: .module)
-    public static let uiImage2: UIImage = UIImage(named: "sample", in: .module, compatibleWith: nil)!
+    public static let uiImage2: UIImage = UIImage(named: "sample2", in: .module, compatibleWith: nil)!
     
+    public static let image3: Image = Image("sample2", bundle: .main)
+    public static let uiImage3: UIImage = UIImage(named: "sample2", in: .main, compatibleWith: nil)!
+    
+}
+
+public struct MyImageView: View {
+    public var body: some View {
+        Image("sample", bundle: .module)
+            .resizable()
+            .scaledToFit()
+            .frame(width: 100, height: 100)
+    }
+}
+
+#Preview {
+    MyImageView()
 }
