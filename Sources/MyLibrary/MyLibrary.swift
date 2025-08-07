@@ -1,6 +1,10 @@
 // The Swift Programming Language
 // https://docs.swift.org/swift-book
 
+import Foundation
+import SwiftUI
+import UIKit
+
 // デフォルトではinternalのため別モジュールからはアクセスできない
 class TestLibrary {
     var text = "Hello, World!"
@@ -20,4 +24,14 @@ public class TestPublicLibrary {
     public func sayHello() {
         print(text)
     }
+}
+
+public class ResourceLoader {
+    
+    public static let image: Image = Image("sample", bundle: .module)
+    public static let uiImage: UIImage = UIImage(named: "sample", in: .module, compatibleWith: nil)!
+    
+    public static let image2: Image = Image("sample2", bundle: .module)
+    public static let uiImage2: UIImage = UIImage(named: "sample", in: .module, compatibleWith: nil)!
+    
 }
