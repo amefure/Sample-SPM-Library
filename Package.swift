@@ -17,7 +17,7 @@ let package = Package(
         .target(
             name: "MyLibrary",
             resources: [
-                .process("Assets")
+                .process("Resource")
             ]
         ),
 

@@ -27,16 +27,20 @@ public class TestPublicLibrary {
 }
 
 public class ResourceLoader {
-    
     public static let image: Image = Image("sample", bundle: .module)
     public static let uiImage: UIImage = UIImage(named: "sample", in: .module, compatibleWith: nil)!
-    
-    public static let image2: Image = Image("sample2", bundle: .module)
-    public static let uiImage2: UIImage = UIImage(named: "sample2", in: .module, compatibleWith: nil)!
-    
-    public static let image3: Image = Image("sample2", bundle: .main)
-    public static let uiImage3: UIImage = UIImage(named: "sample2", in: .main, compatibleWith: nil)!
-    
+}
+
+public class TextFileReader {
+    public static func readTextFile() -> String? {
+        let bundle = Bundle.module
+
+        guard let url = bundle.url(forResource: "sample", withExtension: "txt") else {
+            return nil
+        }
+
+        return try? String(contentsOf: url, encoding: .utf8)
+    }
 }
 
 public struct MyImageView: View {
@@ -45,9 +49,19 @@ public struct MyImageView: View {
             .resizable()
             .scaledToFit()
             .frame(width: 100, height: 100)
+        
+        Image(uiImage: UIImage(named: "sample", in: .module, compatibleWith: nil)!)
+            .resizable()
+            .scaledToFit()
+            .frame(width: 100, height: 100)
     }
 }
 
 #Preview {
-    MyImageView()
+    VStack {
+        Text("HELLO")
+        MyImageView()
+        Text(TextFileReader.readTextFile() ?? "NONE")
+    }
+   
 }
